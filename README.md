@@ -1,7 +1,5 @@
 # 🤖 Smart Resume Screener
-## 🌐 Live Demo
 
-[Open Smart Resume Screener](https://public-ai-resume-mern.vercel.app/)
 An AI-powered resume screening application that compares a candidate's resume with a job description and generates a match score with AI-based feedback.
 
 ## 🚀 Features
@@ -134,8 +132,8 @@ npm install
 npm start
 🔐 Environment Variables
 
+Create .env inside backend_ai:
 
-🔌 API Endpoints
 PORT=4000
 MONGO_URI=your_mongodb_connection_string
 COHERE_API_KEY=your_cohere_api_key
