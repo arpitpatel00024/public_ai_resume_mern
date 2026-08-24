@@ -1,15 +1,14 @@
-
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAazTU3sUcUMuyLVqLOAWczOdXB8HIetq4",
-  authDomain: "mernai-b1525.firebaseapp.com",
-  projectId: "mernai-b1525",
-  storageBucket: "mernai-b1525.firebasestorage.app",
-  messagingSenderId: "235206334441",
-  appId: "1:235206334441:web:7116ca0325274d99c01d78",
-  measurementId: "G-W98V3XNVJX"
+  apiKey: "AIzaSyCzIe_xJ-v3QUn_JRfvi-PiUP-332q-_wU",
+  authDomain: "mernai-bfdf8.firebaseapp.com",
+  projectId: "mernai-bfdf8",
+  storageBucket: "mernai-bfdf8.firebasestorage.app",
+  messagingSenderId: "648071416630",
+  appId: "1:648071416630:web:7e60dea95a82196727c197",
+  measurementId: "G-8VYR3V4T91"
 };
 
 const app = initializeApp(firebaseConfig);

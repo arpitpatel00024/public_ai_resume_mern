@@ -1,4 +1,3 @@
-
 import styles from './History.module.css';
 import { Skeleton } from '@mui/material';
 import WithAuthHOC from '../../utils/HOC/withAuthHOC';
@@ -14,40 +13,41 @@ const History = () => {
 
   useEffect(() => {
 
+    if (!userInfo?._id) return;
+
     const fetchUserData = async () => {
-      setLoader(true)
-      {/* Please watch the video for ful source code */ }
+      setLoader(true);
 
-    }
+      try {
+        const results = await axios.get(
+          `/api/resume/get/${userInfo._id}`
+        );
 
-    fetchUserData()
-  }, [])
+        console.log("History data:", results.data.resumes);
+
+        setData(results.data.resumes || []);
+
+      } catch (err) {
+        console.log(err);
+        alert("Something Went Wrong");
+
+      } finally {
+        setLoader(false);
+      }
+    };
+
+    fetchUserData();
+
+  }, [userInfo?._id]);
 
   return (
     <div className={styles.History}>
+
       <div className={styles.HistoryCardBlock}>
 
-        {
-          loader && <>
-
-            <Skeleton
-              variant="rectangular"
-              width={266}
-              height={200}
-              sx={{ borderRadius: "20px" }}
-            />
-            <Skeleton
-              variant="rectangular"
-              width={266}
-              height={200}
-              sx={{ borderRadius: "20px" }}
-            />
-            <Skeleton
-              variant="rectangular"
-              width={266}
-              height={200}
-              sx={{ borderRadius: "20px" }}
-            />
+        {/* Loading */}
+        {loader && (
+          <>
             <Skeleton
               variant="rectangular"
               width={266}
@@ -55,29 +55,73 @@ const History = () => {
               sx={{ borderRadius: "20px" }}
             />
 
+            <Skeleton
+              variant="rectangular"
+              width={266}
+              height={200}
+              sx={{ borderRadius: "20px" }}
+            />
+
+            <Skeleton
+              variant="rectangular"
+              width={266}
+              height={200}
+              sx={{ borderRadius: "20px" }}
+            />
+
+            <Skeleton
+              variant="rectangular"
+              width={266}
+              height={200}
+              sx={{ borderRadius: "20px" }}
+            />
           </>
-        }
+        )}
 
-        {
-          data.map((item, index) => {
-            return (
-              <div key={item._id} className={styles.HistoryCard}>
-                <div className={styles.cardPercentage}>{item.score}%</div>
-                {/* <h2 >{Frontend Developer}</h2> */}
-                <p>Resume Name : {item.resume_name}</p>
-                <p>{item.feedback}</p>
-                <p>Dated : {item.createdAt.slice(0, 10)}</p>
+        {/* History */}
+        {!loader && data.map((item) => {
+
+          return (
+            <div
+              key={item._id}
+              className={styles.HistoryCard}
+            >
+
+              <div className={styles.cardPercentage}>
+                {item.score !== null && item.score !== undefined
+                  ? `${item.score}%`
+                  : "N/A"}
               </div>
-            );
-          })
-        }
 
+              <p>
+                Resume Name : {item.resume_name || "Unknown"}
+              </p>
 
+              <p>
+                {item.feedback || "No feedback available"}
+              </p>
+
+              <p>
+                Dated :{" "}
+                {item.createdAt
+                  ? item.createdAt.slice(0, 10)
+                  : "Unknown"}
+              </p>
+
+            </div>
+          );
+
+        })}
+
+        {/* No history */}
+        {!loader && data.length === 0 && (
+          <p>No resume history found.</p>
+        )}
 
       </div>
 
     </div>
-  )
-}
+  );
+};
 
-export default WithAuthHOC(History)
+export default WithAuthHOC(History);
