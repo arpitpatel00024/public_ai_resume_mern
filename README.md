@@ -1,6 +1,7 @@
 # 🤖 Smart Resume Screener
 ## 🌐 Live Demo
-**[Open Smart Resume Screener] = https://public-ai-resume-mern.vercel.app/
+
+[Open Smart Resume Screener](https://public-ai-resume-mern.vercel.app/)
 An AI-powered resume screening application that compares a candidate's resume with a job description and generates a match score with AI-based feedback.
 
 ## 🚀 Features
