@@ -1,19 +1,9 @@
-require("dotenv").config();
-
-const dns = require("dns");
-
-// Use public DNS servers
-dns.setServers(["8.8.8.8", "1.1.1.1"]);
-
 const mongoose = require("mongoose");
 
+const mongoURI = process.env.MONGO_URI;
+
 mongoose
-    .connect(process.env.MONGO_URI, {
-        family: 4,
-        tls: true,
-        serverSelectionTimeoutMS: 30000,
-        connectTimeoutMS: 30000
-    })
+    .connect(mongoURI)
     .then(() => {
         console.log("Database Connected Successfully");
     })
